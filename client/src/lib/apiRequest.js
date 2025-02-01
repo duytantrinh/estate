@@ -1,7 +1,7 @@
 import axios from "axios"
 
 const apiRequest = axios.create({
-  baseURL: `${process.env.VITE_API_ENDPOINT}/api`,
+  baseURL: "https://estate-back.onrender.com/api",
   withCredentials: true,
 })
 
