@@ -1,0 +1,32 @@
+@import "../../responsive.scss";
+
+.layout {
+  height: 100vh;
+  max-width: 1366px;
+  margin: 0 auto;
+  padding: 0 20px;
+  display: flex;
+  flex-direction: column;
+
+  // Responsive layout
+  @include lg {
+    // background-color: rgb(235, 233, 242);
+    max-width: 1280px;
+  }
+
+  @include md {
+    // background-color: rgb(247, 245, 244);
+    max-width: 768px;
+  }
+
+  //   import sm breakpoint
+  @include sm {
+    // background-color: rgb(243, 238, 238);
+    max-width: 640px;
+  }
+
+  .content {
+    // flex: 1;
+    height: calc(100vh - 100px);
+  }
+}

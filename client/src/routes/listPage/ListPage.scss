@@ -1,0 +1,47 @@
+@import "../../index.scss";
+@import "../../responsive.scss";
+
+.listPage {
+  display: flex;
+  height: 100%;
+  max-width: 100%;
+
+  @include md {
+    flex-direction: column;
+  }
+
+  .listContainer {
+    flex: 3;
+    height: 100%;
+
+    @include md {
+      max-width: 100%;
+    }
+
+    .wrapper {
+      height: 100%;
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      overflow-y: scroll;
+      padding-bottom: 50px;
+
+      @include md {
+        padding-right: 0px;
+      }
+    }
+
+    .wrapper::-webkit-scrollbar {
+      display: none;
+      scroll-behavior: smooth;
+    }
+  }
+
+  .mapContainer {
+    flex: 2;
+    height: 100%;
+    background-color: $bg_right_color;
+  }
+}

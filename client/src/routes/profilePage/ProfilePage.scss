@@ -1,0 +1,120 @@
+@import "../../index.scss";
+@import "../../responsive.scss";
+
+.profilePage::-webkit-scrollbar {
+  display: none;
+  scroll-behavior: smooth;
+}
+
+.profilePage {
+  display: flex;
+  height: 100%;
+
+  @include md {
+    flex-direction: column;
+    overflow-y: scroll;
+  }
+
+  // ------- Start: custom scrollbar
+  .details::-webkit-scrollbar {
+    width: 5px;
+
+    @include md {
+      width: 0px;
+    }
+  }
+
+  .details::-webkit-scrollbar-track {
+    background-color: #dddcdc;
+  }
+
+  .details::-webkit-scrollbar-thumb {
+    background-color: #2b2a2a;
+    border-radius: 10px;
+  }
+
+  // ------- End: custom scrollbar
+
+  .details {
+    flex: 3;
+    overflow-y: scroll;
+    padding-bottom: 50px;
+
+    @include md {
+      flex: none;
+      height: max-content;
+    }
+
+    .wrapper {
+      padding-right: 50px;
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+
+      @include md {
+        padding-right: 0px;
+      }
+
+      .title {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h1 {
+          font-weight: 300;
+        }
+
+        button {
+          padding: 10px 20px;
+          background-color: $bt_secondary;
+          cursor: pointer;
+          border: none;
+        }
+      }
+
+      .info {
+        display: flex;
+        flex-direction: column;
+
+        gap: 20px;
+
+        span {
+          display: flex;
+          gap: 20px;
+          align-items: center;
+        }
+
+        button {
+          width: 100px;
+          background-color: $secondary_color;
+          padding: 10px 20px;
+          border: none;
+          cursor: pointer;
+        }
+
+        img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+    }
+  }
+
+  .chatContainer {
+    flex: 2;
+    background-color: $bg_right_color;
+    height: 100%;
+
+    @include md {
+      flex: none;
+      height: max-content;
+    }
+
+    .wrapper {
+      padding: 0px 20px;
+      height: 100%;
+    }
+  }
+}

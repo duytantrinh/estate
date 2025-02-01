@@ -1,0 +1,137 @@
+@import "../../index.scss";
+
+.chat {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+
+  // ------- Start: custom scrollbar
+  .messages::-webkit-scrollbar,
+  .center::-webkit-scrollbar {
+    width: 5px;
+  }
+
+  .messages::-webkit-scrollbar-track,
+  .center::-webkit-scrollbar-track {
+    background-color: #dddcdc;
+  }
+
+  .messages::-webkit-scrollbar-thumb,
+  .center::-webkit-scrollbar-thumb {
+    background-color: #2b2a2a;
+    border-radius: 10px;
+  }
+
+  // ------- End: custom scrollbar
+
+  .messages {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    overflow-y: scroll;
+
+    h1 {
+      font-weight: 300;
+    }
+
+    .message {
+      background-color: white;
+      display: flex;
+      gap: 20px;
+      align-items: center;
+      cursor: pointer;
+      padding: 10px 20px;
+
+      img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit: cover;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+
+  .chatBox {
+    flex: 1;
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    .top {
+      background-color: $bt_secondary;
+      padding: 20px;
+      font-weight: bold;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .user {
+        display: flex;
+        gap: 20px;
+        align-items: center;
+
+        img {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          object-fit: cover;
+        }
+      }
+
+      .close {
+        cursor: pointer;
+      }
+    }
+
+    .center {
+      height: 350px;
+      overflow-y: scroll;
+      display: flex;
+      flex-direction: column;
+      padding: 20px;
+      gap: 20px;
+
+      .chatMessage {
+        width: 50%;
+
+        &.own {
+          align-self: flex-end;
+          text-align: right;
+        }
+
+        span {
+          font-size: 12px;
+          background-color: $bg_right_color;
+        }
+      }
+    }
+
+    .bottom {
+      border-top: 2px solid $bt_secondary;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      textarea {
+        flex: 3;
+        height: 100%;
+        border: none;
+        padding: 20px;
+      }
+
+      button {
+        flex: 1;
+        height: 100%;
+        border: none;
+        background-color: $bt_secondary;
+        cursor: pointer;
+      }
+    }
+  }
+}

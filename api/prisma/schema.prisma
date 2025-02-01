@@ -1,0 +1,127 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  // khi kết nối Prisma với Mongodb phải có đoạn @map(....) đề connect id trong prisma và _id trong mongodb
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  email     String   @unique
+  username  String   @unique
+  password  String
+  avatar    String? // optional
+  createdAt DateTime @default(now())
+
+  // create relationship between User and Post
+  posts Post[] // 1 user can create multiple posts
+
+  // create relationship between User and SavedPost
+  SavedPost SavedPost?
+
+  // create relationship between User and CHAT
+  Chat   Chat[]   @relation(fields: [chatId], references: [id])
+  chatId String[] @db.ObjectId
+}
+
+// tạo 2 model Post và PostDetail
+// khi vào trang profilePage : thì chỉ load data từ Post
+// khi click vào 1 specific Post thì load data từ Post và PostDetail
+
+model Post {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  title     String
+  price     Int
+  images    String[]
+  address   String
+  city      String
+  bedroom   Int
+  bathroom  Int
+  latitude  String
+  longitude String
+  type      Type
+  property  Property
+  createdAt DateTime @default(now())
+  // create relationship between User and Post
+  user      User     @relation(fields: [userId], references: [id])
+  userId    String   @db.ObjectId
+
+  // create relationship between Post and PostDetail
+  postDetail PostDetail? // 1 post có thể có 1 PostDetail hoặc không
+
+  // create relationship between Post and SavedPost
+  savedPosts SavedPost[]
+  // savedPost SavedPost?
+}
+
+enum Type {
+  buy
+  rent
+}
+
+enum Property {
+  apartment
+  house
+  condo
+  land
+}
+
+model PostDetail {
+  id         String  @id @default(auto()) @map("_id") @db.ObjectId
+  desc       String
+  utilities  String?
+  pet        String?
+  income     String?
+  size       Int?
+  school     Int?
+  bus        Int?
+  restaurant Int?
+
+  // create relationship between Post and PostDetail
+  post   Post   @relation(fields: [postId], references: [id])
+  postId String @unique @db.ObjectId
+}
+
+model SavedPost {
+  id     String @id @default(auto()) @map("_id") @db.ObjectId
+  user   User   @relation(fields: [userId], references: [id])
+  userId String @unique @db.ObjectId
+
+  post      Post     @relation(fields: [postId], references: [id])
+  postId    String   @unique @db.ObjectId
+  createdAt DateTime @default(now())
+
+  @@unique([userId, postId]) // 1 user only save a post one time
+}
+
+model Chat {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+
+  // create relationship between User and CHAT
+  users   User[]   @relation(fields: [userIDs], references: [id])
+  userIDs String[] @db.ObjectId
+  seenBy  String[] @db.ObjectId
+  // Do đang có relation với model User => @db.ObjectId chỉ đến id của model User
+
+  createdAt   DateTime  @default(now())
+  messages    Message[]
+  lastMessage String?
+}
+
+model Message {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  text      String
+  userId    String
+  chat      Chat     @relation(fields: [chatId], references: [id])
+  chatId    String   @db.ObjectId
+  createdAt DateTime @default(now())
+}

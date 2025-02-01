@@ -1,0 +1,125 @@
+@import "../../index.scss";
+@import "../../responsive.scss";
+
+.card {
+  display: flex;
+  gap: 20px;
+
+  @include md {
+    gap: 10px;
+  }
+
+  .imgContainer {
+    flex: 2;
+    height: 200px;
+
+    @include sm {
+      flex: 1;
+      height: 100px;
+    }
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 10px;
+    }
+  }
+
+  .textContainer {
+    flex: 3;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: space-between;
+
+    @include sm {
+      flex: 4;
+    }
+
+    img {
+      width: 16px;
+      height: 16px;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #444;
+
+      transition: all 0.4s ease;
+
+      &:hover {
+        color: #000;
+        scale: 1.01;
+      }
+    }
+
+    .address {
+      font-size: 14px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #888;
+    }
+
+    .price {
+      font-weight: 300;
+      font-size: 20px;
+      background-color: $bt_secondary;
+      padding: 5px;
+      width: max-content;
+      border-radius: 5px;
+    }
+
+    .bottom {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+
+      .features {
+        display: flex;
+        gap: 20px;
+        font-size: 14px;
+
+        @include md {
+          gap: 10px;
+        }
+
+        .feature {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          background-color: whitesmoke;
+          padding: 5px;
+          border-radius: 5px;
+        }
+      }
+
+      .icons {
+        display: flex;
+        gap: 20px;
+
+        @include md {
+          gap: 10px;
+        }
+
+        .icon {
+          border: 1px solid #999;
+          padding: 2px 5px;
+          border-radius: 5px;
+          cursor: pointer;
+
+          display: flex;
+          justify-content: center;
+          align-items: center;
+
+          &:hover {
+            background-color: lightgray;
+          }
+        }
+      }
+    }
+  }
+}
