@@ -10,7 +10,7 @@ export const SocketContextProvider = ({children}) => {
 
   useEffect(() => {
     setSocket(
-      io(`"${process.env.VITE_SOCKET_ENDPOINT}"`, {
+      io("https://estate-back.onrender.com/", {
         transports: ["websocket", "polling", "flashsocket"],
       })
     )
