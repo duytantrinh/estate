@@ -18,9 +18,9 @@ dotenv.config({
 })
 const app = express()
 
-// (Start Cors Middleware) Set middleware of CORS ngăn lỗi Access-Control-Allow-Origin header
+// (Start Cors Middleware) 
 app.use((req, res, next) => {
-  res.setHeader("Access-Control-Allow-Origin", process.env.CLIENT_URL)
+  res.setHeader("Access-Control-Allow-Origin", "https://tantrinh-estate.vercel.app/")
   res.setHeader(
     "Access-Control-Allow-Methods",
     "GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS,CONNECT,TRACE"
@@ -37,10 +37,9 @@ app.use((req, res, next) => {
   next()
 })
 
-// [Middleware để kết nối client http://localhost:5173/ với Expressjs backend]
-app.use(cors({origin: "tantrinh-estate.vercel.app", credentials: true}))
-// `credentials:true` : allow to send cookie đến client side để check
-// app.use(cors({origin: "http://localhost:5173/"}))
+// [Middleware connect client http://localhost:5173/ to Expressjs backend]
+app.use(cors({origin: "https://tantrinh-estate.vercel.app/", credentials: true}))
+
 
 // (End Cors Middleware)
 
