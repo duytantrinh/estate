@@ -38,7 +38,7 @@ app.use((req, res, next) => {
 })
 
 // [Middleware để kết nối client http://localhost:5173/ với Expressjs backend]
-app.use(cors({origin: "https://estate-xspf.onrender.com", credentials: true}))
+app.use(cors({origin: "tantrinh-estate.vercel.app", credentials: true}))
 // `credentials:true` : allow to send cookie đến client side để check
 // app.use(cors({origin: "http://localhost:5173/"}))
 
