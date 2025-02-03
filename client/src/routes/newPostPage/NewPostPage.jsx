@@ -3,7 +3,7 @@ import "./NewPostPage.scss"
 import ReactQuill from "react-quill"
 import "react-quill/dist/quill.snow.css"
 import apiRequest from "../../lib/apiRequest"
-import UploadWidget from "../../components/uploadWidget/uploadWidget"
+import UploadWidget from "../../components/uploadWidget/UploadWidget"
 import {useNavigate} from "react-router-dom"
 
 function NewPostPage() {
