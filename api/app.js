@@ -21,7 +21,7 @@ const app = express()
 // (Start Cors Middleware) 
 app.use((req, res, next) => {
    res.setHeader('Access-Control-Allow-Credentials', true)
-  res.setHeader('Access-Control-Allow-Origin', 'https://tantrinh-estate.vercel.app/')
+  res.setHeader('Access-Control-Allow-Origin', 'https://estate-frontend-k7kj.onrender.com')
   // another common pattern
   // res.setHeader('Access-Control-Allow-Origin', req.headers.origin);
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT')
@@ -34,7 +34,7 @@ app.use((req, res, next) => {
 })
 
 // [Middleware connect client http://localhost:5173/ to Expressjs backend]
-app.use(cors({origin: "https://tantrinh-estate.vercel.app/", credentials: true}))
+app.use(cors({origin: "https://estate-frontend-k7kj.onrender.com", credentials: true}))
 
 
 // (End Cors Middleware)
